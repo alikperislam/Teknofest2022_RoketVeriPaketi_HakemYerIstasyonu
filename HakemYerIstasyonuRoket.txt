@@ -1,0 +1,172 @@
+// roketten gelen veriler:
+            byte[] _byteIrtifa = BitConverter.GetBytes(testVeriIrtifa); // İrtifa 4 byte dizi
+            byte[] _byteRoketGpsIrtifa = BitConverter.GetBytes(roketGPSirtifa); // Roket gps İrtifa 4 byte dizi
+            byte[] _byteRoketEnlem = BitConverter.GetBytes(latRoket); // Roket enlem 4 byte dizi
+            byte[] _byteRoketBoylam = BitConverter.GetBytes(longRoket); // Roket Boylam 4 byte dizi
+            byte[] _byteGorevYukuGpsIrtifa = BitConverter.GetBytes(gorevYukuIrtifa); // Gorev yuku gps irtifa 4 byte dizi
+            byte[] _byteGorevYukuEnlem = BitConverter.GetBytes(latGorevYuku); // Gorev yuku enlem 4 byte dizi
+            byte[] _byteGorevYukuBoylam = BitConverter.GetBytes(longGorevYuku); // Gorev yuku boylam 4 byte dizi
+            byte[] _byteKademeGpsIrtifa = BitConverter.GetBytes(0f); // Kademe gps irtifa 4 byte dizi
+            byte[] _byteKademeEnlem = BitConverter.GetBytes(0f); // Kademe enlem 4 byte dizi
+            byte[] _byteKademeBoylam = BitConverter.GetBytes(0f); // kademe boylam 4 byte dizi
+            byte[] _byteJiroskopX = BitConverter.GetBytes(gx); // JiroskopX 4 byte dizi
+            byte[] _byteJiroskopY = BitConverter.GetBytes(gy); // JiroskopY 4 byte dizi
+            byte[] _byteJiroskopZ = BitConverter.GetBytes(gz); // JiroskopZ 4 byte dizi
+            byte[] _byteIvmeX = BitConverter.GetBytes(testVeriX); // IvmeX 4 byte dizi
+            byte[] _byteIvmeY = BitConverter.GetBytes(testVeriY); // IvmeY 4 byte dizi
+            byte[] _byteIvmeZ = BitConverter.GetBytes(testVeriZ); // IvmeZ 4 byte dizi
+            byte[] _byteAci = BitConverter.GetBytes(roketAci); // Açı 4 byte dizi
+            //------------------------------------------------------------------------------------
+
+
+
+            int checkSum = 0; // HYI'ya gonderilecek olan checkSum verilerin toplamı işlemi için kullanılacak.
+            byte[] byteDizi = new byte[78]; // 78 eleman uzunlugunda byte turunde bir dizi tanimladik, bu dizi ile HYI'a gonderilecek olan veri paketi oluşturuluyor.
+
+
+            // -------------------- İnteger türde gönderilecek olan veri paketleri:
+            byteDizi[0] = 0xFF; // byte1 - sabit
+            byteDizi[1] = 0xFF; // byte2 - sabit
+            byteDizi[2] = 0x54; // byte3 - sabit
+            byteDizi[3] = 0x52; // byte4 - sabit
+            byteDizi[4] = 1; // takim ID
+            byteDizi[5] = sayacDeger; // Sayac (0-255 arasinda olacak her veri paketi ginderdiginde +1) 255 oldugunda sıfırlanacak.
+            // -------------------- 
+
+            // -------------------- float türde gönderilecek olan veri paketleri:
+
+            // irtifa
+            byteDizi[6] = _byteIrtifa[0]; // irtifa
+            byteDizi[7] = _byteIrtifa[1]; // irtifa
+            byteDizi[8] = _byteIrtifa[2]; // irtifa
+            byteDizi[9] = _byteIrtifa[3]; // irtifa
+
+            // roket gps irtifa
+            byteDizi[10] = _byteRoketGpsIrtifa[0]; // roket gps irtifa
+            byteDizi[11] = _byteRoketGpsIrtifa[1]; // roket gps irtifa
+            byteDizi[12] = _byteRoketGpsIrtifa[2]; // roket gps irtifa
+            byteDizi[13] = _byteRoketGpsIrtifa[3]; // roket gps irtifa
+
+            // roket enlem
+            byteDizi[14] = _byteRoketEnlem[0]; // roket enlem
+            byteDizi[15] = _byteRoketEnlem[1]; // roket enlem
+            byteDizi[16] = _byteRoketEnlem[2]; // roket enlem
+            byteDizi[17] = _byteRoketEnlem[3]; // roket enlem
+
+            // roket boylam
+            byteDizi[18] = _byteRoketBoylam[0]; // roket boylam
+            byteDizi[19] = _byteRoketBoylam[1]; // roket boylam
+            byteDizi[20] = _byteRoketBoylam[2];// roket boylam
+            byteDizi[21] = _byteRoketBoylam[3]; // roket boylam
+
+            // gorev yuku gps irtifa
+            byteDizi[22] = _byteGorevYukuGpsIrtifa[0]; // gorev yuku gps irtifa
+            byteDizi[23] = _byteGorevYukuGpsIrtifa[1]; // gorev yuku gps irtifa
+            byteDizi[24] = _byteGorevYukuGpsIrtifa[2]; // gorev yuku gps irtifa
+            byteDizi[25] = _byteGorevYukuGpsIrtifa[3]; // gorev yuku gps irtifa
+
+            // gorev yuku enlem
+            byteDizi[26] = _byteGorevYukuEnlem[0]; // gorev yuku enlem
+            byteDizi[27] = _byteGorevYukuEnlem[1]; // gorev yuku enlem
+            byteDizi[28] = _byteGorevYukuEnlem[2]; // gorev yuku enlem
+            byteDizi[29] = _byteGorevYukuEnlem[3]; // gorev yuku enlem
+
+            // gorev yuku boylam
+            byteDizi[30] = _byteGorevYukuBoylam[0]; // gorev yuku boylam
+            byteDizi[31] = _byteGorevYukuBoylam[1]; // gorev yuku boylam
+            byteDizi[32] = _byteGorevYukuBoylam[2]; // gorev yuku boylam
+            byteDizi[33] = _byteGorevYukuBoylam[3]; // gorev yuku boylam
+
+
+            // sadece zorlu gorev ----------------------------------------
+            // kademe gps irtifa
+            byteDizi[34] = _byteKademeGpsIrtifa[0]; // kademe gps irtifa
+            byteDizi[35] = _byteKademeGpsIrtifa[1]; // kademe gps irtifa
+            byteDizi[36] = _byteKademeGpsIrtifa[2]; // kademe gps irtifa
+            byteDizi[37] = _byteKademeGpsIrtifa[3]; // kademe gps irtifa
+
+            // kademe enlem
+            byteDizi[38] = _byteKademeEnlem[0]; // kademe enlem
+            byteDizi[39] = _byteKademeEnlem[1]; // kademe enlem
+            byteDizi[40] = _byteKademeEnlem[2]; // kademe enlem
+            byteDizi[41] = _byteKademeEnlem[3]; // kademe enlem
+
+            // kademe boylam
+            byteDizi[42] = _byteKademeBoylam[0]; // kademe boylam
+            byteDizi[43] = _byteKademeBoylam[1]; // kademe boylam
+            byteDizi[44] = _byteKademeBoylam[2]; // kademe boylam
+            byteDizi[45] = _byteKademeBoylam[3]; // kademe boylam
+            // sadece zorlu gorev ----------------------------------------
+
+
+            // jiroskop X
+            byteDizi[46] = _byteJiroskopX[0]; // jiroskop X
+            byteDizi[47] = _byteJiroskopX[1]; // jiroskop X
+            byteDizi[48] = _byteJiroskopX[2]; // jiroskop X
+            byteDizi[49] = _byteJiroskopX[3]; // jiroskop X
+
+            // jiroskop Y
+            byteDizi[50] = _byteJiroskopY[0]; // jiroskop Y
+            byteDizi[51] = _byteJiroskopY[1]; // jiroskop Y
+            byteDizi[52] = _byteJiroskopY[2]; // jiroskop Y
+            byteDizi[53] = _byteJiroskopY[3]; // jiroskop Y
+
+            // jiroskop Z
+            byteDizi[54] = _byteJiroskopZ[0]; // jiroskop Z
+            byteDizi[55] = _byteJiroskopZ[1]; // jiroskop Z
+            byteDizi[56] = _byteJiroskopZ[2]; // jiroskop Z
+            byteDizi[57] = _byteJiroskopZ[3]; // jiroskop Z
+
+            // ivme X
+            byteDizi[58] = _byteIvmeX[0]; // ivme X
+            byteDizi[59] = _byteIvmeX[1]; // ivme X
+            byteDizi[60] = _byteIvmeX[2]; // ivme X
+            byteDizi[61] = _byteIvmeX[3]; // ivme X
+
+            // ivme Y
+            byteDizi[62] = _byteIvmeY[0]; // ivme Y
+            byteDizi[63] = _byteIvmeY[1]; // ivme Y
+            byteDizi[64] = _byteIvmeY[2]; // ivme Y
+            byteDizi[65] = _byteIvmeY[3]; // ivme Y
+
+            // ivme Z
+            byteDizi[66] = _byteIvmeZ[0]; // ivme Z
+            byteDizi[67] = _byteIvmeZ[1]; // ivme Z
+            byteDizi[68] = _byteIvmeZ[2]; // ivme Z
+            byteDizi[69] = _byteIvmeZ[3]; // ivme Z
+
+            // Aci
+            byteDizi[70] = _byteAci[0]; // Aci
+            byteDizi[71] = _byteAci[1]; // Aci
+            byteDizi[72] = _byteAci[2]; // Aci
+            byteDizi[73] = _byteAci[3]; // Aci
+
+
+
+            // -------------------- İnteger türde gönderilecek olan veri paketleri:
+
+            byteDizi[74] = (byte)kurtarmaDurum; // Durum (1 2 3 4 olabilir sadece)
+
+            //----------
+            for (int i = 4; i < 75; i++)
+            {
+                checkSum += byteDizi[i]; // 4-74 indisleri arasındaki tüm değerleri toplayarak checkSum degerini oluşturuyor.
+            }
+            int modCheckSum = (checkSum % 256); // checkSum değeri üzerinden 256 ya göre mod alıarak Hyı'ya bu mod değeri gönderilecek.
+            //----------
+
+            byteDizi[75] = (byte)modCheckSum; // CRC CheckSum
+            byteDizi[76] = 0x0D; // byte77
+            byteDizi[77] = 0x0A; // byte78
+            // --------------------
+            //MessageBox.Show(checkSum.ToString());
+
+            // sayac arttırma operatoru:
+            sayacDeger++;
+            if (sayacDeger == 256)
+            {
+                sayacDeger = 0;
+            }
+
+            //veri paketinin Roketsan hakem yer istasyonuna gönderilmesi
+            serialPort2.Write(byteDizi, 0, 78); // veriyi HYI'a transmit ettigimiz kisim.
